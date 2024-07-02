@@ -81,20 +81,20 @@
 
   <style>
     .appliance {
-      color: white;
+      color: #0a466b;
       transition: box-shadow 0s ease;
-      border: 1px solid #E0E0E0;
+      border: 1px solid #000000;
       border-radius: 5px;
   }
 
   .appliance:hover {
-    box-shadow: 0 0 5px white;
+    box-shadow: 0 0 5px rgb(0, 0, 0);
   }
 
   .counter {
 		display: flex;
-		border-top: 1px solid rgb(255, 255, 255);
-		border-bottom: 1px solid rgb(255, 255, 255);
+		border-top: 1px solid rgb(0, 0, 0);
+		border-bottom: 1px solid rgb(0, 0, 0);
 		margin: 1rem 0;
 	}
 
@@ -112,7 +112,7 @@
 	}
 
 	.counter button:hover {
-		background-color:grey;
+		background-color:#cea282;
 	}
 
   .counter button:focus {
@@ -127,7 +127,7 @@
 	path {
 		vector-effect: non-scaling-stroke;
 		stroke-width: 2px;
-		stroke: #ffffff;
+		stroke: #000000;
 
 ;
 	}
@@ -172,14 +172,14 @@
 
   .slider-container p {
     font-size: 1.2rem;
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 10px;
   }
 
   .slider-container input[type="range"] {
     width: 75%;
     height: 15px;
-    background: grey;
+    background: #0a466b;
     outline: none;
     -webkit-appearance: none;
     appearance: none;

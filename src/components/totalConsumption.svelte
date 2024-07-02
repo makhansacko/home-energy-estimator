@@ -27,7 +27,7 @@
 
 <style>
   .totalConso {
-      color: white;
+      color: #0a466b;
       border: 1px solid grey;
       padding: 1em;
       border-radius: 5px;

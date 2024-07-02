@@ -21,12 +21,13 @@
   <button on:click={scrollToMainView}>Calculer</button>
 </div> -->
 <main id="main-view">
-<!--<img src="public/images/new-logo-mini-sodishop.png" alt="logo_sodishop" class="logo_sodishop"/> -->
-<div class="sidebar">
+  <h2>Estimez vos besoins energétiques journaliers</h2>
+  <!--
+  <div class="sidebar">
   <a href="#home"> Mesurer</a>
   <a href="#services">Groupes</a>
   <a href="#clients">Solaire</a>
-</div>
+  </div>-->
   <div class="grid">
     <Ampoule />
     <Refrigerateur />
@@ -51,6 +52,10 @@
   h1 {
     font-size: 2em;
     color: #333;
+  }
+  h2 {
+    font-size:1.5em;
+    color: #0a466b;
   }
   p {
     font-size: 1.2em;
