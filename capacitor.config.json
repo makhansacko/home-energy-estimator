@@ -1,0 +1,6 @@
+{
+  "appId": "com.sahelanalytics.app",
+  "appName": "Mali Energie",
+  "webDir": "public",
+  "bundledWebRuntime": false
+}
