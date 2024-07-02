@@ -67,33 +67,36 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
   }
-  
-  .sidebar {
-  height: 100%;
-  width: 100px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 16px;
-}
 
-.sidebar a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #818181;
-  display: block;
-}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+  }
 
-.sidebar a:hover {
-  color: #f1f1f1;
-}
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr); /* Adjust grid for smaller screens */
+      gap: 0.5em; /* Reduce gap */
+    }
+  }
 
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr; /* Single column layout for very small screens */
+      gap: 0.5em; /* Further reduce gap */
+    }
+    h1, h2, p {
+      font-size: 1em; /* Adjust font sizes for small screens */
+    }
+  }
+
+  @media (max-width: 430px) {
+    .grid {
+      gap: 0.25em; /* Minimize gap for very narrow screens */
+    }
+
+    /* Optionally, adjust component sizes or padding here if necessary */
+  }
 </style>
