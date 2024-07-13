@@ -84,7 +84,7 @@
       </button>
   </div>
   <div class="slider-container">
-    <p>Heures d'utilisation: {hours}h</p>
+    <p>Nombre d'heures d'utilisation: {hours}h</p>
     <label for="start-time">Heure de début: {startTime}h</label>
     <input type="range" id="start-time" min="0" max="24" bind:value={startTime} />
     <label for="end-time">Heure de fin: {endTime}h</label>

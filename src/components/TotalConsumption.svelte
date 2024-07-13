@@ -30,10 +30,10 @@
       const numPanelsMax = Math.ceil((solarPanelMax * 1000) / panelWattage);
 
       recommendationContent = `
-          Capacité de la batterie: ${batteryMin} - ${batteryMax} kWh\n
-          Taille du convertisseur: ${inverterMin} - ${inverterMax} kW\n
-          Puissance des panneaux solaires: ${solarPanelMin} - ${solarPanelMax} kW\n
-          Nombre de panneaux: ${numPanelsMin} - ${numPanelsMax}
+Capacité de la batterie: ${batteryMin} - ${batteryMax} kWh\n
+Taille du convertisseur: ${inverterMin} - ${inverterMax} kW\n
+Puissance des panneaux solaires: ${solarPanelMin} - ${solarPanelMax} kW\n
+Nombre de panneaux: ${numPanelsMin} - ${numPanelsMax}
       `;
 
       console.log('Recommendation Content:', recommendationContent);
