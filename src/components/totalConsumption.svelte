@@ -53,13 +53,13 @@
   <button on:click={getRecommendation}>Recevoir recommendation d'un système solaire</button>
 
   {#if showModal}
-      <Modal {showModal} on:close={closeModal}>
-          <div class="modal-content">
-              <h2>Recommendations Système Solaire</h2>
-              <pre>{recommendationContent}</pre>
-              <button on:click={closeModal}>Fermer</button>
-          </div>
-      </Modal>
+  <Modal {showModal} on:close={closeModal} close={closeModal}>
+    <div class="modal-content">
+        <h2>Recommendations Système Solaire</h2>
+        <pre>{recommendationContent}</pre>
+        <button on:click={closeModal}>Fermer</button>
+    </div>
+</Modal>
   {/if}
 </div>
 
