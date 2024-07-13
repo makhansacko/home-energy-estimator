@@ -8,7 +8,11 @@
 </script>
 
 {#if showModal}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="modal-overlay" on:click={handleClose}>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div class="modal-content" on:click|stopPropagation>
             <slot></slot>
         </div>
