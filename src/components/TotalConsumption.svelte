@@ -6,66 +6,72 @@
     let peakSunHours = 5; // Default value
     let panelWattage = 300; // Default value
   
+    function calculateRecommendations() {
+      const consumptionMin = Math.round($totalConsumption.min);
+      const consumptionMax = Math.round($totalConsumption.max);
+  
+      // Calculating Battery Capacity
+      const batteryMin = Math.ceil(consumptionMin / 5) * 5; // kWh, rounding up to the nearest 5
+      const batteryMax = Math.ceil(consumptionMax / 5) * 5; // kWh, rounding up to the nearest 5
+  
+      // Calculating Inverter Size
+      const inverterMin = Math.ceil(consumptionMin / 4); // kW
+      const inverterMax = Math.ceil(consumptionMax / 4); // kW
+  
+      // Calculating Solar Panel Array
+      const solarPanelMin = Math.ceil(consumptionMin / peakSunHours); // kW
+      const solarPanelMax = Math.ceil(consumptionMax / peakSunHours); // kW
+  
+      // Number of Panels (based on user input wattage)
+      const numPanelsMin = Math.ceil((solarPanelMin * 1000) / panelWattage);
+      const numPanelsMax = Math.ceil((solarPanelMax * 1000) / panelWattage);
+  
+      recommendationContent = `
+  Capacité de la batterie: ${batteryMin} - ${batteryMax} kWh\n
+  Taille du convertisseur: ${inverterMin} - ${inverterMax} kW\n
+  Puissance des panneaux solaires: ${solarPanelMin} - ${solarPanelMax} kW\n
+  Nombre de panneaux: ${numPanelsMin} - ${numPanelsMax} (basé sur ${panelWattage}W par panneau)
+      `;
+    }
+  
     function getRecommendation() {
-        const consumptionMin = Math.round($totalConsumption.min);
-        const consumptionMax = Math.round($totalConsumption.max);
-  
-        // Calculating Battery Capacity
-        const batteryMin = Math.ceil(consumptionMin / 5) * 5; // kWh, rounding up to the nearest 5
-        const batteryMax = Math.ceil(consumptionMax / 5) * 5; // kWh, rounding up to the nearest 5
-  
-        // Calculating Inverter Size
-        const inverterMin = Math.ceil(consumptionMin / 4); // kW
-        const inverterMax = Math.ceil(consumptionMax / 4); // kW
-  
-        // Calculating Solar Panel Array
-        const solarPanelMin = Math.ceil(consumptionMin / peakSunHours); // kW
-        const solarPanelMax = Math.ceil(consumptionMax / peakSunHours); // kW
-  
-        // Number of Panels (based on user input wattage)
-        const numPanelsMin = Math.ceil((solarPanelMin * 1000) / panelWattage);
-        const numPanelsMax = Math.ceil((solarPanelMax * 1000) / panelWattage);
-  
-        recommendationContent = `
-    Capacité de la batterie: ${batteryMin} - ${batteryMax} kWh\n
-    Taille du convertisseur: ${inverterMin} - ${inverterMax} kW\n
-    Puissance des panneaux solaires: ${solarPanelMin} - ${solarPanelMax} kW\n
-    Nombre de panneaux: ${numPanelsMin} - ${numPanelsMax} (basé sur ${panelWattage}W par panneau)
-        `;
-  
-        showModal = true;
+      calculateRecommendations();
+      showModal = true;
     }
   
     function closeModal() {
-        showModal = false;
+      showModal = false;
+    }
+  
+    $: if (showModal) {
+      calculateRecommendations();
     }
   </script>
   
   <div class="totalConso">
     <h2>Consommation Journalière</h2>
     <img src="/images/solar.svg" alt="solar panel icon" class="solar-icon"/>
-    <p>{Math.round($totalConsumption.min)} - {Math.round($totalConsumption.max)} kWh</p>
-  
-    <div class="input-container">
-      <label for="peak-sun-hours">Nombre d'heures de soleil par jour:</label>
-      <input type="number" id="peak-sun-hours" bind:value={peakSunHours} min="1" max="24" step="1" />
-    </div>
-    
-    <div class="input-container">
-      <label for="panel-wattage">Puissance des panneaux solaires (W):</label>
-      <input type="number" id="panel-wattage" bind:value={panelWattage} min="100" max="1000" step="50"/>
-    </div>
+    <p><b>{Math.round($totalConsumption.min)} - {Math.round($totalConsumption.max)} kWh</b></p>
   
     <button on:click={getRecommendation}>Recevoir recommandation d'un système solaire</button>
   
     {#if showModal}
-    <Modal {showModal} on:close={closeModal} close={closeModal}>
-      <div class="modal-content">
-        <h2>Recommendations Système Solaire</h2>
-        <pre>{recommendationContent}</pre>
-        <button on:click={closeModal}>Fermer</button>
-      </div>
-    </Modal>
+      <Modal {showModal} on:close={closeModal} close={closeModal}>
+        <div class="modal-content">
+          <h2>(2) Recommendations Système Solaire</h2>
+          <div class="input-container">
+            <label for="peak-sun-hours">Nombre d'heures de soleil par jour:</label>
+            <input type="number" id="peak-sun-hours" bind:value={peakSunHours} min="1" max="24" step="1" on:input={calculateRecommendations} />
+          </div>
+          
+          <div class="input-container">
+            <label for="panel-wattage">Puissance des panneaux solaires (W):</label>
+            <input type="number" id="panel-wattage" bind:value={panelWattage} min="100" max="1000" step="50" on:input={calculateRecommendations} />
+          </div>
+          <pre>{recommendationContent}</pre>
+          <button on:click={closeModal}>Fermer</button>
+        </div>
+      </Modal>
     {/if}
   </div>
   

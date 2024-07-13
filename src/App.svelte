@@ -18,7 +18,7 @@
 </div> -->
 <main id="main-view">
   <h3>Bienvenue ! Cette application vous permet d'(1) estimer vos besoins énergétiques journaliers et (2) recevoir une recommandation pour votre installation solaire.</h3>
-    <br> <h4>Pour commencer, veuillez entrer le nombre d'unités et le nombre d'heures d'utilisation par jour pour chaque appareil électroménager.</h4>
+    <br> <h4>(1) Pour commencer, veuillez entrer le nombre d'unités et le nombre d'heures d'utilisation par jour pour chaque appareil électroménager.</h4>
   <!--
   <div class="sidebar">
   <a href="#home"> Mesurer</a>
