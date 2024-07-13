@@ -32,6 +32,7 @@
         justify-content: center;
         align-items: center;
         z-index: 1000;
+        padding: 1em;
     }
 
     .modal-content {
@@ -41,6 +42,14 @@
         max-width: 90%;
         max-height: 90%;
         overflow-y: auto;
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        align-self: flex-end; /* Align the close button to the top right */
     }
 
     /* Responsive adjustments */
