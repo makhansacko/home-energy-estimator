@@ -38,29 +38,27 @@
         background: white;
         padding: 2em;
         border-radius: 10px;
-        max-width: 500px;
-        width: 100%;
+        max-width: 90%;
+        max-height: 90%;
+        overflow-y: auto;
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .modal-content {
             padding: 1.5em; /* Adjust padding for smaller screens */
-            max-width: 90%; /* Adjust max width for smaller screens */
         }
     }
 
     @media (max-width: 480px) {
         .modal-content {
             padding: 1em; /* Adjust padding for very small screens */
-            max-width: 95%; /* Adjust max width for very small screens */
         }
     }
 
     @media (max-width: 430px) {
         .modal-content {
             padding: 0.5em; /* Minimize padding for very narrow screens */
-            max-width: 100%; /* Full width for very narrow screens */
         }
     }
 </style>
