@@ -6,11 +6,8 @@
   import Climatiseur from "./components/Climatiseur.svelte";
   import Humidificateur from "./components/Humidificateur.svelte";
   import MicroOnde from "./components/Micro-onde.svelte";
-  import TotalConsumption from "./components/totalConsumption.svelte"; 
-
-  function scrollToMainView() {
-    document.getElementById('main-view').scrollIntoView();
-  }
+  import TotalConsumption from "./components/TotalConsumption.svelte"; 
+  
 
 </script>
 <!-- <div class="landing-page">
@@ -21,7 +18,7 @@
   <button on:click={scrollToMainView}>Calculer</button>
 </div> -->
 <main id="main-view">
-  <h2>Estimez vos besoins energétiques journaliers</h2>
+  <h3>Estimez vos besoins energétiques journaliers</h3>
   <!--
   <div class="sidebar">
   <a href="#home"> Mesurer</a>
@@ -68,11 +65,6 @@
     gap: 1em;
   }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1em;
-  }
 
   /* Responsive adjustments */
   @media (max-width: 768px) {

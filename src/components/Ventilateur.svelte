@@ -4,11 +4,14 @@
    
   let spinSpeed = 2; // default spin speed
   let units = 0;
+  let startTime = 0;
+  let endTime = 0;
   let hours = 0;
   const consumptionPerUnit = { min: 0.015, max: 0.2 };
-  let consumption = { min: 0, max: 0 };
+  let consumption = { min: 0, max: 0 }; 
   let previousConsumption = { min: 0, max: 0 };
   const displayed_units = spring(0);
+  
 
   $: displayed_units.set(units);
 
@@ -26,11 +29,10 @@
       previousConsumption = { ...consumption };
   }
 
-    $: {
-    spinSpeed = units > 0 ? 2 / units : 2;
-  }
-
   $: offset = modulo($displayed_units, 1);
+
+  // Calculate hours only if endTime is greater than startTime
+  $: hours = (endTime > startTime) ? endTime - startTime : 0;
 
   /**
    * @param {number} n
@@ -51,6 +53,10 @@
           units -= 1;
           displayed_units.set(units);
       }
+  }
+
+  $: {
+    spinSpeed = units > 0 ? 2 / units : 2;
   }
   </script>
   
@@ -78,9 +84,12 @@
       </button>
   </div>
   <div class="slider-container">
-    <p>Heures d'utilisation / jour  : {hours}</p>
-    <input type="range" min="0" max="24" bind:value={hours} />
-    </div>
+    <p>Heures d'utilisation: {hours}h</p>
+    <label for="start-time">Heure de début: {startTime}h</label>
+    <input type="range" id="start-time" min="0" max="24" bind:value={startTime} />
+    <label for="end-time">Heure de fin: {endTime}h</label>
+    <input type="range" id="end-time" min="0" max="24" bind:value={endTime} />
+  </div>
   </div>
 
   

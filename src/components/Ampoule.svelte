@@ -3,11 +3,14 @@
   import { totalConsumption } from './store.js';
 
   let units = 0;
+  let startTime = 0;
+  let endTime = 0;
   let hours = 0;
   const consumptionPerUnit = { min: 0.003, max: 0.025 };
   let consumption = { min: 0, max: 0 }; 
   let previousConsumption = { min: 0, max: 0 };
   const displayed_units = spring(0);
+  
 
   $: displayed_units.set(units);
 
@@ -26,6 +29,9 @@
   }
 
   $: offset = modulo($displayed_units, 1);
+
+  // Calculate hours only if endTime is greater than startTime
+  $: hours = (endTime > startTime) ? endTime - startTime : 0;
 
   /**
    * @param {number} n
@@ -74,8 +80,11 @@
   </div>
 
   <div class="slider-container">
-  <p>Heures d'utilisation / jour  : {hours}</p>
-  <input type="range" min="0" max="24" bind:value={hours} />
+    <p>Heures d'utilisation: {hours}h</p>
+    <label for="start-time">Heure de début: {startTime}h</label>
+    <input type="range" id="start-time" min="0" max="24" bind:value={startTime} />
+    <label for="end-time">Heure de fin: {endTime}h</label>
+    <input type="range" id="end-time" min="0" max="24" bind:value={endTime} />
   </div>
 </div>
 
@@ -92,76 +101,74 @@
   }
 
   .counter {
-		display: flex;
-		border-top: 1px solid rgb(0, 0, 0);
-		border-bottom: 1px solid rgb(0, 0, 0);
-		margin: 1rem 0;
-	}
+    display: flex;
+    border-top: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin: 1rem 0;
+  }
 
-	.counter button {
-		width: 2em;
-		padding: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: 0;
-		background-color: transparent;
-		touch-action: manipulation;
-		font-size: 2rem;
+  .counter button {
+    width: 2em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background-color: transparent;
+    touch-action: manipulation;
+    font-size: 2rem;
     border-radius: 0;
-	}
+  }
 
-	.counter button:hover {
-		background-color:#cea282;
-	}
+  .counter button:hover {
+    background-color:#cea282;
+  }
 
   .counter button:focus {
     outline: none;
-}
+  }
 
-	svg {
-		width: 25%;
-		height: 25%;
-	}
+  svg {
+    width: 25%;
+    height: 25%;
+  }
 
-	path {
-		vector-effect: non-scaling-stroke;
-		stroke-width: 2px;
-		stroke: #000000;
+  path {
+    vector-effect: non-scaling-stroke;
+    stroke-width: 2px;
+    stroke: #000000;
+  }
 
-;
-	}
+  .counter-viewport {
+    width: 12em;
+    height: 4em;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+  }
 
-	.counter-viewport {
-		width: 12em;
-		height: 4em;
-		overflow: hidden;
-		text-align: center;
-		position: relative;
-	}
+  .counter-viewport strong {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    color: var(--color-theme-1);
+    font-size: 3rem;
+    align-items: center;
+    justify-content: center;
+  }
 
-	.counter-viewport strong {
-		position: absolute;
-		display: flex;
-		width: 100%;
-		height: 100%;
-		font-weight: 400;
-		color: var(--color-theme-1);
-		font-size: 3rem;
-		align-items: center;
-		justify-content: center;
-	}
+  .counter-digits {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 
-	.counter-digits {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-	}
-
-	.hidden {
-		top: -100%;
-		user-select: none;
-	}
+  .hidden {
+    top: -100%;
+    user-select: none;
+  }
 
   .slider-container {
     display: flex;
@@ -190,8 +197,7 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #cea282
-;
+    background: #cea282;
     cursor: pointer;
   }
 

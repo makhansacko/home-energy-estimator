@@ -2,12 +2,15 @@
   import { spring } from 'svelte/motion';
 import { totalConsumption } from './store.js';
 
-let units = 0;
+  let units = 0;
+  let startTime = 0;
+  let endTime = 0;
   let hours = 0;
   const consumptionPerUnit = { min: 0.75, max: 1.5 };
-  let consumption = { min: 0, max: 0 };
+  let consumption = { min: 0, max: 0 }; 
   let previousConsumption = { min: 0, max: 0 };
   const displayed_units = spring(0);
+  
 
   $: displayed_units.set(units);
 
@@ -25,28 +28,31 @@ let units = 0;
       previousConsumption = { ...consumption };
   }
 
-$: offset = modulo($displayed_units, 1);
+  $: offset = modulo($displayed_units, 1);
 
-/**
-* @param {number} n
-* @param {number} m
-*/
-function modulo(n, m) {
-   // handle negative numbers
-   return ((n % m) + m) % m;
-}
+  // Calculate hours only if endTime is greater than startTime
+  $: hours = (endTime > startTime) ? endTime - startTime : 0;
 
-function handleAddUnit() {
-   units += 1;
-   displayed_units.set(units);
-}
+  /**
+   * @param {number} n
+   * @param {number} m
+   */
+  function modulo(n, m) {
+      // handle negative numbers
+      return ((n % m) + m) % m;
+  }
 
-function handleRemoveUnit() {
-   if (units > 0) {
-       units -= 1;
-       displayed_units.set(units);
-   }
-}
+  function handleAddUnit() {
+      units += 1;
+      displayed_units.set(units);
+  }
+
+  function handleRemoveUnit() {
+      if (units > 0) {
+          units -= 1;
+          displayed_units.set(units);
+      }
+  }
 </script>
 
 <div class="appliance">
@@ -74,9 +80,12 @@ function handleRemoveUnit() {
 </div>
  
 <div class="slider-container">
- <p>Heures d'utilisation / jour  : {hours}</p>
- <input type="range" min="0" max="24" bind:value={hours} />
- </div>
+  <p>Heures d'utilisation: {hours}h</p>
+  <label for="start-time">Heure de début: {startTime}h</label>
+  <input type="range" id="start-time" min="0" max="24" bind:value={startTime} />
+  <label for="end-time">Heure de fin: {endTime}h</label>
+  <input type="range" id="end-time" min="0" max="24" bind:value={endTime} />
+</div>
 </div>
 
 <style>
