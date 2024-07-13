@@ -17,7 +17,7 @@
   <button on:click={scrollToMainView}>Calculer</button>
 </div> -->
 <main id="main-view">
-  <h3>Estimez vos besoins energétiques journaliers</h3>
+  <h3>Estimez vos besoins energétiques journaliers et recevez des recommendations de système solaire</h3>
   <!--
   <div class="sidebar">
   <a href="#home"> Mesurer</a>
