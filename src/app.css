@@ -30,6 +30,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: white;
+  background-image: url(../images/Sahel-09.png);
+  background-size: cover; /* Adjust the size of the background image */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent tiling of the background image */
 }
 
 h1 {
