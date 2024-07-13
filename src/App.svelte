@@ -7,7 +7,6 @@
   import Humidificateur from "./components/Humidificateur.svelte";
   import MicroOnde from "./components/Micro-onde.svelte";
   import TotalConsumption from "./components/TotalConsumption.svelte"; 
-  
 
 </script>
 <!-- <div class="landing-page">
@@ -38,26 +37,7 @@
 </main>
 
 <style>
-.landing-page{
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
-  h1 {
-    font-size: 2em;
-    color: #333;
-  }
-  h2 {
-    font-size:1.5em;
-    color: #0a466b;
-  }
-  p {
-    font-size: 1.2em;
-    color: #333;
-}
+
   
   .grid {
     display: grid;
@@ -79,9 +59,7 @@
       grid-template-columns: 1fr; /* Single column layout for very small screens */
       gap: 0.5em; /* Further reduce gap */
     }
-    h1, h2, p {
-      font-size: 1em; /* Adjust font sizes for small screens */
-    }
+    
   }
 
   @media (max-width: 430px) {

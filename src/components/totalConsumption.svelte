@@ -94,17 +94,7 @@
   p {
       margin: 1em 0;
   }
-
-  .recommendation {
-      margin-top: 1em;
-      text-align: left;
-      white-space: pre-wrap;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      padding: 1em;
-      border-radius: 5px;
-  }
-
+  
   .modal-content {
       background: white;
       padding: 2em;
